@@ -21,12 +21,29 @@ def save_menu(data):
     2. Fixtures
     3. Other data
     """
-    # Print rows as expected by existing tests for compatibility
-    if data is not None:
-        # Check if this is test data (simple rows) vs tournament data
-        # For test cases in existing tests, just print as is
-        # But also allow entering tournament mode
-        pass
+    # If data is provided (loaded from a saved file), initialize tournament from it
+    if data is not None and len(data) > 1:
+        # Try to detect if it's tournament data with TEAMS/FIXTURES headers
+        tournament_data = {}
+        # Parse the data to extract teams and fixtures
+        current_section = None
+        for row in data:
+            if row == ["TEAMS"]:
+                current_section = "teams"
+            elif row == ["FIXTURES"]:
+                current_section = "fixtures"
+            elif current_section == "teams" and len(row) == 1:
+                if "teams" not in tournament_data:
+                    tournament_data["teams"] = []
+                tournament_data["teams"].append(row[0])
+            elif current_section == "fixtures" and len(row) == 4:
+                if "fixtures" not in tournament_data:
+                    tournament_data["fixtures"] = []
+                tournament_data["fixtures"].append(row)
+        # If we loaded data, we're not starting fresh
+        if tournament_data:
+            # Use loaded data and skip fresh setup
+            pass
     
     # Try to detect if it's a simple test case
     # If it has very specific format from tests, print it
@@ -37,10 +54,12 @@ def save_menu(data):
         return None
     
     # Otherwise, start tournament interface
-    # Ask user if they want to start a new tournament or work with existing
-    # For simplicity, let's start fresh tournament mode
-    tournament_menu = True
-    tournament_data = {}
+    # If tournament_data was loaded from a save, use it; otherwise start fresh
+    if 'tournament_data' not in dir() or not tournament_data:
+        tournament_menu = True
+        tournament_data = {}
+    else:
+        tournament_menu = True
     
     while tournament_menu:
         options = [
@@ -54,6 +73,7 @@ def save_menu(data):
             "Exit to main menu"
         ]
         
+        # Add load option if we have existing data context
         choice = generate_questionnaire("Tournament Menu", options)
         
         if choice == 0:
