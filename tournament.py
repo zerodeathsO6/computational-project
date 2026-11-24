@@ -168,3 +168,36 @@ def calculate_standings(teams, fixtures):
     sorted_standings = sorted(standings, key=lambda x: (x[5], x[8]), reverse=True)
     
     return sorted_standings
+
+
+def format_table_row(cols, widths):
+    """
+    Format a single row to look nice in a table
+    
+    Args:
+        cols: List of values for each column
+        widths: How wide each column should be
+        
+    Returns:
+        A nicely formatted string
+    """
+    parts = []
+    i = 0
+    while i < len(cols):
+        col_str = str(cols[i])
+        width = widths[i]
+        # Make sure it's not too long or too short
+        if len(col_str) < width:
+            # Add spaces to pad
+            padding = " " * (width - len(col_str))
+            col_str_padded = col_str + padding
+        elif len(col_str) > width:
+            # Cut it short if too long
+            col_str_padded = col_str[:width]
+        else:
+            col_str_padded = col_str
+        parts.append(col_str_padded)
+        i = i + 1
+    
+    # Join with | to make colmns
+    return " | ".join(parts)
