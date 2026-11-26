@@ -1,4 +1,4 @@
-# Overview of Schedule Maker
+# Overview of Fixture Forge
 
 This is another version of the code, I've rewritten this to be as simple as possible. New features include multiple files where the code has been spread out since it was getting impossible to write code in one file (it went over 900 lines).
 
