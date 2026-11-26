@@ -15,5 +15,5 @@ def app_header():
     Print the app title/header
     """
     print("=========================")
-    print("==== SCHEDULE MAKER ====")
+    print("==== FIXTURE FORGE ====")
     print("=========================")
