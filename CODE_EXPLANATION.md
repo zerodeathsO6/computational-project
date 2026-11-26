@@ -2,7 +2,7 @@
 
 This document explains every file in simple terms
 
-## 1. mn.py (Main File)
+## 1. main.py (Main File)
 The entry point. It uses a state machine, keeps track of current page. 
 States: 0=main menu, 1=open save, 2=create save, 3=list saves, else=exit.
 Uses a while loop to stay running until exit.
