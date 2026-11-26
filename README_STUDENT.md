@@ -1,4 +1,4 @@
-# Schedule Maker v2 - Student Guide
+# Fixture Forge v2 - Student Guide
 
 This is a simple schedule/tournament maker designed using basic python programming.
 
@@ -10,11 +10,11 @@ This is a simple schedule/tournament maker designed using basic python programmi
 
 ## How to run it
 ```bash
-python3 mn.py
+python3 main.py
 ```
 
 ## Files explained
-1. mn.py - Main program that controls everything
+1. main.py - Main program that controls everything
 2. utils.py - Helper functions for getting input from user
 3. writer.py - Saves and loads data to/from files
 4. format.py - Makes output look nice
